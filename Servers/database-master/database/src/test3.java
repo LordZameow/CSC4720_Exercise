@@ -36,6 +36,8 @@ public class test3  {
     String sql4 = "insert into Student(Name, Address, Status) values (\"John Liu\", \"345 Database Road, Troy, MI 48083\", \"Junior\")";
     String sql5 = "UPDATE Student set Address=\"123 New Main Street, Troy, MI 48083\" WHERE Name=\"Shiyong Lu\"";
     String sql6 = "DELETE FROM Student WHERE Name=\"Shiyong Lu\"";
+    String sql7 = "UPDATE Student set Address=\"1150 S Canton Center RD, Canton, MI 48187\" WHERE Name=\"Timothy Armstrong\"";
+    String sql8 = "DELETE FROM Student WHERE Name=\"Timothy Armstrong\"";
 
     try {
       System.out.println("Select a table and then print out its content.");
@@ -44,7 +46,7 @@ public class test3  {
       // Setup the connection with the DB
       connect = DriverManager
           .getConnection("jdbc:mysql://localhost:3306/testdb?"
-              + "useSSL=false&user=john&password=john1234");
+              + "useSSL=false&user=john&password=pass1234");
 
         
 
@@ -71,12 +73,22 @@ public class test3  {
 
       System.out.println("After the update statement is executed.");
       statement.executeUpdate(sql5);
+      
+      //update student Timothy Armstrong 
+      statement.executeUpdate(sql7);
+      
+      
       // see the results 
       resultSet = statement.executeQuery("select * from Student");
       writeResultSet(resultSet);
 
       System.out.println("After the delete statement is executed.");
       statement.executeUpdate(sql6);
+      
+      //Delete student Timothy Armstrong from table
+      statement.executeUpdate(sql8);
+      
+      
       // see the results 
       resultSet = statement.executeQuery("select * from Student");
       writeResultSet(resultSet);
